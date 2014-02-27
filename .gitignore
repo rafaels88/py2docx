@@ -1,0 +1,6 @@
+.DS_Store
+*.swo
+*.swp
+*.pyc
+fabfile.pyc
+pendencias_dashboard.txt
