@@ -1,15 +1,7 @@
-<ns0:document xmlns:ns0="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
-   <ns0:body>
-            <ns0:p>
-              <ns0:r>
-              <ns0:t>Foi?</ns0:t>
-              </ns0:r>
-            </ns0:p>
-        
-            <ns0:p>
-              <ns0:r>
-              <ns0:t>Outro P</ns0:t>
-              </ns0:r>
-            </ns0:p>
-        </ns0:body>
-</ns0:document>
+<ns0:document xmlns:ns0="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><ns0:body><ns0:p><ns0:r><ns0:t>Teste de Text</ns0:t></ns0:r><ns0:br/><ns0:r><ns0:t>Teste de Text 2</ns0:t></ns0:r></ns0:p>
+<ns0:tbl>
+<ns0:tr>
+<ns0:tc><ns0:tcPr><ns0:shd ns0:val="clear" ns0:color="auto" ns0:fill="#333333" /><ns0:tcMar><ns0:start ns0:w="1440" ns0:type="dxa"/></ns0:tcMar></ns0:tcPr><ns0:p><ns0:r><ns0:t>Teste de Text</ns0:t></ns0:r><ns0:br/><ns0:r><ns0:t>Teste de Text 2</ns0:t></ns0:r></ns0:p></ns0:tc>
+<ns0:tc><ns0:tcPr></ns0:tcPr><ns0:p><ns0:r><ns0:t>Teste de Text</ns0:t></ns0:r><ns0:br/><ns0:r><ns0:t>Teste de Text 2</ns0:t></ns0:r></ns0:p></ns0:tc></ns0:tr>
+<ns0:tr>
+<ns0:tc><ns0:tcPr><ns0:shd ns0:val="clear" ns0:color="auto" ns0:fill="#333333" /><ns0:tcMar><ns0:start ns0:w="1440" ns0:type="dxa"/></ns0:tcMar></ns0:tcPr><ns0:p><ns0:r><ns0:t>Teste de Text</ns0:t></ns0:r><ns0:br/><ns0:r><ns0:t>Teste de Text 2</ns0:t></ns0:r></ns0:p></ns0:tc></ns0:tr></ns0:tbl></ns0:body></ns0:document>

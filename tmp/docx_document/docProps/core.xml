@@ -1,12 +1,1 @@
-<ns0:coreProperties xmlns:ns0="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
-  <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/"></dc:title>
-  <dc:subject xmlns:dc="http://purl.org/dc/elements/1.1/"></dc:subject>
-  <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"></dc:creator>
-  <ns0:keywords></ns0:keywords>
-  <ns0:lastModifiedBy></ns0:lastModifiedBy>
-  <ns0:revision>1</ns0:revision>
-  <ns0:category></ns0:category>
-  <dc:description xmlns:dc="http://purl.org/dc/elements/1.1/"></dc:description>
-  <dcterms:created xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/" xsi:type="dcterms:W3CDTF">2014-02-25T15:47:44Z</dcterms:created>
-  <dcterms:modified xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/" xsi:type="dcterms:W3CDTF">2014-02-25T15:47:44Z</dcterms:modified>
-</ns0:coreProperties>
+<ns0:coreProperties xmlns:ns0="http://schemas.openxmlformats.org/package/2006/metadata/core-properties"><dc:title xmlns:dc="http://purl.org/dc/elements/1.1/"></dc:title><dc:subject xmlns:dc="http://purl.org/dc/elements/1.1/"></dc:subject><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/"></dc:creator><ns0:keywords></ns0:keywords><ns0:lastModifiedBy></ns0:lastModifiedBy><ns0:revision>1</ns0:revision><ns0:category></ns0:category><dc:description xmlns:dc="http://purl.org/dc/elements/1.1/"></dc:description><dcterms:created xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/" xsi:type="dcterms:W3CDTF">2014-02-28T02:09:24Z</dcterms:created><dcterms:modified xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dcterms="http://purl.org/dc/terms/" xsi:type="dcterms:W3CDTF">2014-02-28T02:09:24Z</dcterms:modified></ns0:coreProperties>
