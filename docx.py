@@ -2,6 +2,7 @@
 import os
 import zipfile
 from elements.image import Image
+from elements.text import InlineText
 from document import RelationshipFile, AppFile, CoreFile, \
     DocumentFile, ContentTypeFile, TMP_PATH, DOCUMENT_PATH, \
     DocumentRelationshipFile, DocxDocument

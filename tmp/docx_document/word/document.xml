@@ -1,7 +1,17 @@
-<ns0:document xmlns:ns0="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><ns0:body><ns0:p><ns0:r><ns0:t>Teste de Text</ns0:t></ns0:r><ns0:br/><ns0:r><ns0:t>Teste de Text 2</ns0:t></ns0:r></ns0:p>
-<ns0:tbl>
-<ns0:tr>
-<ns0:tc><ns0:tcPr><ns0:shd ns0:val="clear" ns0:color="auto" ns0:fill="#333333" /><ns0:tcMar><ns0:start ns0:w="1440" ns0:type="dxa"/></ns0:tcMar></ns0:tcPr><ns0:p><ns0:r><ns0:t>Teste de Text</ns0:t></ns0:r><ns0:br/><ns0:r><ns0:t>Teste de Text 2</ns0:t></ns0:r></ns0:p></ns0:tc>
-<ns0:tc><ns0:tcPr></ns0:tcPr><ns0:p><ns0:r><ns0:t>Teste de Text</ns0:t></ns0:r><ns0:br/><ns0:r><ns0:t>Teste de Text 2</ns0:t></ns0:r></ns0:p></ns0:tc></ns0:tr>
-<ns0:tr>
-<ns0:tc><ns0:tcPr><ns0:shd ns0:val="clear" ns0:color="auto" ns0:fill="#333333" /><ns0:tcMar><ns0:start ns0:w="1440" ns0:type="dxa"/></ns0:tcMar></ns0:tcPr><ns0:p><ns0:r><ns0:t>Teste de Text</ns0:t></ns0:r><ns0:br/><ns0:r><ns0:t>Teste de Text 2</ns0:t></ns0:r></ns0:p></ns0:tc></ns0:tr></ns0:tbl></ns0:body></ns0:document>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml">  <w:body><w:p><w:pPr></w:pPr><w:r><w:rPr><w:b w:val="true"/><w:i w:val="true"/><w:u w:val="single" w:color="4433ff"/><w:color w:val="FF0000" /></w:rPr><w:t xml:space="preserve">Teste de Text</w:t></w:r><w:br/><w:r><w:rPr></w:rPr><w:t xml:space="preserve">Teste de Text 2</w:t></w:r></w:p><w:tbl><w:tblPr>
+<w:tblCellMar><w:top w:w="566.929133858" w:type="dxa" /><w:left w:w="566.929133858" w:type="dxa" /><w:bottom w:w="566.929133858" w:type="dxa" /><w:right w:w="566.929133858" w:type="dxa" /></w:tblCellMar>
+</w:tblPr>
+<w:tr>
+<w:tc><w:tcPr></w:tcPr><w:p><w:pPr></w:pPr><w:r><w:rPr><w:b w:val="true"/><w:i w:val="true"/><w:u w:val="single" w:color="4433ff"/><w:color w:val="FF0000" /></w:rPr><w:t xml:space="preserve">Teste de Text</w:t></w:r><w:br/><w:r><w:rPr></w:rPr><w:t xml:space="preserve">Teste de Text 2</w:t></w:r></w:p></w:tc>
+<w:tc><w:tcPr></w:tcPr><w:p><w:pPr></w:pPr><w:r><w:rPr><w:b w:val="true"/><w:i w:val="true"/><w:u w:val="single" w:color="4433ff"/><w:color w:val="FF0000" /></w:rPr><w:t xml:space="preserve">Teste de Text</w:t></w:r><w:br/><w:r><w:rPr></w:rPr><w:t xml:space="preserve">Teste de Text 2</w:t></w:r></w:p></w:tc></w:tr>
+
+<w:tr>
+<w:tc><w:tcPr></w:tcPr><w:p><w:pPr></w:pPr><w:r><w:rPr><w:b w:val="true"/><w:i w:val="true"/><w:u w:val="single" w:color="4433ff"/><w:color w:val="FF0000" /></w:rPr><w:t xml:space="preserve">Teste de Text</w:t></w:r><w:br/><w:r><w:rPr></w:rPr><w:t xml:space="preserve">Teste de Text 2</w:t></w:r></w:p></w:tc>
+<w:tc><w:tcPr>
+<w:shd w:val="clear" w:color="auto" w:fill="334455" />
+
+<w:tcW w:type="dxa" w:w="566.929133858"/>
+
+<w:vAlign w:val="top" />
+</w:tcPr><w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr></w:rPr><w:t xml:space="preserve">Novo Teste sdf dsfdsfdsfdsfdsfdsfdsf dsfdsf dsf sdf sdfsdf</w:t></w:r></w:p></w:tc></w:tr>
+</w:tbl></w:body></w:document>
