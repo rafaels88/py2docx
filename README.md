@@ -15,6 +15,7 @@ Block elements is almost the same like "\<div\>" HTML element.
 ###### Methods:
 ##### append(elem)
 
+Example
 ```python
 text = InlineText("Hello World!")
 block = Block()
