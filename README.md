@@ -12,24 +12,24 @@ from py2docx.docx.elements import Block
 
 Block elements is almost the same like "\<div\>" HTML element.
 
-###### How to import
-
 ###### Methods:
 - append(elem)
 
-* elem: Any element to put inside the block
+Parameters | Description
+---------- | -----------
+elem       | Any element to put inside the block
 
 
-##### Block
-
-Block elements is almost the same like "<div>" HTML element.
-
-###### How to import
+### Block
 ```python
 from py2docx.docx.elements import Block
 ```
 
+Block elements is almost the same like "\<div\>" HTML element.
+
 ###### Methods:
 - append(elem)
 
-* elem: Any element to put inside the block
+Parameters | Description
+---------- | -----------
+elem       | Any element to put inside the block
