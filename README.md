@@ -13,7 +13,7 @@ from py2docx.docx.elements import Block
 Block elements is almost the same like "\<div\>" HTML element.
 
 ###### Methods:
-- append(elem)
+##### append(elem)
 
 Parameters | Description
 ---------- | -----------
@@ -28,7 +28,7 @@ from py2docx.docx.elements import Block
 Block elements is almost the same like "\<div\>" HTML element.
 
 ###### Methods:
-- append(elem)
+##### append(elem)
 
 Parameters | Description
 ---------- | -----------
