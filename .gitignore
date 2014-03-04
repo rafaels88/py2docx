@@ -2,5 +2,5 @@
 *.swo
 *.swp
 *.pyc
-fabfile.pyc
-pendencias_dashboard.txt
+dist/
+setup.py

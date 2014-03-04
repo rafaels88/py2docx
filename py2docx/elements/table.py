@@ -30,7 +30,7 @@ class InvalidCellMarginException(Exception):
 
 class Table(object):
 
-    def __init__(self, margin=None):
+    def __init__(self, margin=None, width=None, border=None):
         self.xml_string = '<w:tbl>' + \
                           '<w:tblPr>' + \
                           '{properties}' + \
@@ -38,6 +38,8 @@ class Table(object):
                           '{content}' + \
                           '</w:tbl>'
         self.margin = margin
+        self.width = width
+        self.border = border
         self.columns = []
         self.xml_props = []
         self._set_properties()
@@ -54,6 +56,8 @@ class Table(object):
 
     def _set_properties(self):
         self._set_margin()
+        self._set_width()
+        self._set_border()
         self.xml_string = self.xml_string.replace('{properties}',
                                                   ''.join(self.xml_props))
 
@@ -94,6 +98,63 @@ class Table(object):
                                              bottom=bottom,
                                              right=right,
                                              left=left))
+    
+    def _set_width(self):
+        if self.width:
+            xml = '\n<w:tblW w:type="{unit_type}" w:w="{width}"/>\n'
+            if self.width[-1:] == '%':
+                unit_type = 'pct'
+                width = int(self.width[:-1])
+                if width <= 100 and width > 0:
+                    width = width * 50
+                    xml = xml.format(unit_type=unit_type,
+                                     width=width)
+                else:
+                    return
+
+            elif self.width[-2:] in ['cm', 'pt', 'in']:
+                unit_type = 'dxa'
+                width = Unit.to_dxa(self.width)
+                xml = xml.format(unit_type=unit_type,
+                                 width=width)
+
+            self.xml_props.append(xml)
+
+    def _set_border(self):
+        if type(self.border) is dict:
+            xml_border = '<w:tblBorders>{sides}</w:tblBorders>'
+            xml_sides = []
+            sides = [{'name': 'top', 'border': self.border.get('top', None)},
+                     {'name': 'right', 'border': self.border.get('right', None)},
+                     {'name': 'bottom', 'border': self.border.get('bottom', None)},
+                     {'name': 'left', 'border': self.border.get('left', None)}]
+
+            for side in sides:
+                if type(side['border']) is dict:
+                    xml = '<w:{name} {params} w:space="0" />'
+                    xml_params = []
+                    size = side['border'].get('size', None)
+                    color = side['border'].get('color', None)
+                    style = side['border'].get('style', 'solid')
+
+                    if size:
+                        size = int(size.rstrip('pt'))
+                        xml_params.append('w:sz="{0}"'.format(size*8))
+                    if color:
+                        color = color.lstrip('#')
+                        xml_params.append('w:color="{0}"'.format(color))
+                    if style:
+                        if style in ['dotted', 'dashed',
+                                     'solid', 'double']:
+                            if style == 'solid':
+                                style = 'single'
+                            xml_params.append('w:val="{0}"'.format(style))
+
+                    xml = xml.format(name=side['name'],
+                                     params=" ".join(xml_params))
+                    xml_sides.append(xml)
+
+            self.xml_props.append(xml_border.format(sides="".join(xml_sides)))
 
     def _get_xml(self):
         return self.xml_string.format(content="".join(self.columns))
@@ -102,13 +163,14 @@ class Table(object):
 class Cell(object):
 
     def __init__(self, bgcolor=None, margin=None, width=None,
-                 valign=None, nowrap=False):
+                 valign=None, nowrap=False, border=None):
         self.content = ''
         self.bgcolor = bgcolor
         self.margin = margin
         self.width = width
         self.valign = valign
         self.nowrap = nowrap
+        self.border = border
         self.xml_string = '\n<w:tc>' + \
                           '<w:tcPr>' + \
                           '{properties}' + \
@@ -137,6 +199,7 @@ class Cell(object):
         self._set_width()
         self._set_valign()
         self._set_nowrap()
+        self._set_border()
         self.xml_string = self.xml_string.replace('{properties}',
                                                   ''.join(self.xml_props))
 
@@ -150,8 +213,13 @@ class Cell(object):
             xml = '\n<w:tcW w:type="{unit_type}" w:w="{width}"/>\n'
             if self.width[-1:] == '%':
                 unit_type = 'pct'
-                xml = xml.format(unit_type=unit_type,
-                                 width=self.width)
+                width = int(self.width[:-1])
+                if width <= 100 and width > 0:
+                    width = width * 50
+                    xml = xml.format(unit_type=unit_type,
+                                     width=width)
+                else:
+                    return
 
             elif self.width[-2:] in ['cm', 'pt', 'in']:
                 unit_type = 'dxa'
@@ -212,3 +280,39 @@ class Cell(object):
         if self.nowrap is True:
             xml = '<w:noWrap/>'
             self.xml_props.append(xml)
+
+    def _set_border(self):
+        if type(self.border) is dict:
+            xml_border = '<w:tcBorders>{sides}</w:tcBorders>'
+            xml_sides = []
+            sides = [{'name': 'top', 'border': self.border.get('top', None)},
+                     {'name': 'right', 'border': self.border.get('right', None)},
+                     {'name': 'bottom', 'border': self.border.get('bottom', None)},
+                     {'name': 'left', 'border': self.border.get('left', None)}]
+
+            for side in sides:
+                if type(side['border']) is dict:
+                    xml = '<w:{name} {params} w:space="0" />'
+                    xml_params = []
+                    size = side['border'].get('size', None)
+                    color = side['border'].get('color', None)
+                    style = side['border'].get('style', 'solid')
+
+                    if size:
+                        size = int(size.rstrip('pt'))
+                        xml_params.append('w:sz="{0}"'.format(size*8))
+                    if color:
+                        color = color.lstrip('#')
+                        xml_params.append('w:color="{0}"'.format(color))
+                    if style:
+                        if style in ['dotted', 'dashed',
+                                     'solid', 'double']:
+                            if style == 'solid':
+                                style = 'single'
+                            xml_params.append('w:val="{0}"'.format(style))
+
+                    xml = xml.format(name=side['name'],
+                                     params=" ".join(xml_params))
+                    xml_sides.append(xml)
+
+            self.xml_props.append(xml_border.format(sides="".join(xml_sides)))

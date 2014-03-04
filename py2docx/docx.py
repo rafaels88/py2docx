@@ -2,7 +2,6 @@
 import os
 import zipfile
 from elements.image import Image
-from elements.text import InlineText
 from document import RelationshipFile, AppFile, CoreFile, \
     DocumentFile, ContentTypeFile, TMP_PATH, DOCUMENT_PATH, \
     DocumentRelationshipFile, DocxDocument
@@ -28,9 +27,8 @@ class Docx(object):
         self.document_file._create_file()
         self.content_type_file._create_file()
 
-    def _create_document(self, name):
-        zip_name = zipfile.ZipFile("{0}/{1}.docx".format(TMP_PATH, name),
-                                   'w')
+    def _create_document(self, path):
+        zip_name = zipfile.ZipFile("{0}".format(path), 'w')
 
         for dirpath, dirs, files in os.walk("{0}".format(DOCUMENT_PATH)):
             for f in files:
@@ -39,10 +37,11 @@ class Docx(object):
                                                   .format(DOCUMENT_PATH), '')
                 zip_name.write(file_name, file_name_zip)
 
-    def save(self, name):
+    def save(self, path):
         self.document_file._set_content(self.content)
         self._create_structure()
-        self._create_document(name)
+        self._create_document(path)
+        DocxDocument._clean_all()
 
     def append(self, elem):
         if isinstance(elem, Image):
