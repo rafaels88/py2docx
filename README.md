@@ -15,7 +15,13 @@ Block elements is almost the same like "\<div\>" HTML element.
 ###### Methods:
 ##### append(elem)
 
-Parameters | Description
+```python
+text = InlineText("Hello World!")
+block = Block()
+block.append(text)
+```
+
+Parameter | Description
 ---------- | -----------
 elem       | Any element to put inside the block
 
