@@ -3,5 +3,4 @@
 *.swp
 *.pyc
 dist/
-setup.py
 MANIFEST
