@@ -1,10 +1,11 @@
 # coding: utf-8
 import os
 import zipfile
-from elements.image import Image
-from document import RelationshipFile, AppFile, CoreFile, \
-    DocumentFile, ContentTypeFile, TMP_PATH, DOCUMENT_PATH, \
-    DocumentRelationshipFile, DocxDocument
+from py2docx.elements.image import Image
+from py2docx.document import RelationshipFile, AppFile, CoreFile, \
+    DocumentFile, ContentTypeFile, DOCUMENT_PATH, \
+    DocumentRelationshipFile, DocxDocument, SettingsFile, \
+    FontTableFile, WebSettingsFile, ThemeFile, StyleFile
 
 
 class Docx(object):
@@ -18,6 +19,11 @@ class Docx(object):
         self.core_file = CoreFile()
         self.document_file = DocumentFile()
         self.content_type_file = ContentTypeFile()
+        self.settings_file = SettingsFile()
+        self.fonttable_file = FontTableFile()
+        self.websettings_file = WebSettingsFile()
+        self.theme_file = ThemeFile()
+        self.style_file = StyleFile()
 
     def _create_structure(self):
         self.relationship_file._create_file()
@@ -26,16 +32,23 @@ class Docx(object):
         self.core_file._create_file()
         self.document_file._create_file()
         self.content_type_file._create_file()
+        self.settings_file._create_file()
+        self.fonttable_file._create_file()
+        self.websettings_file._create_file()
+        self.theme_file._create_file()
+        self.style_file._create_file()
 
     def _create_document(self, path):
         zip_name = zipfile.ZipFile("{0}".format(path), 'w')
 
         for dirpath, dirs, files in os.walk("{0}".format(DOCUMENT_PATH)):
             for f in files:
-                file_name = os.path.join(dirpath, f)
-                file_name_zip = file_name.replace('{0}'
-                                                  .format(DOCUMENT_PATH), '')
-                zip_name.write(file_name, file_name_zip)
+                if f != '__init__.py':
+                    file_name = os.path.join(dirpath, f)
+                    file_name_zip = file_name.replace('{0}'
+                                                      .format(DOCUMENT_PATH),
+                                                      '')
+                    zip_name.write(file_name, file_name_zip)
 
     def save(self, path):
         self.document_file._set_content(self.content)
@@ -52,6 +65,5 @@ class Docx(object):
         self.content += xml_elem
 
     def _add_image_relationship(self, image):
-        img_obj = image._get_image()
-        rel_id = self.document_relationship_file._add_image(img_obj.name)
+        rel_id = self.document_relationship_file._add_image(image.image_name)
         return rel_id

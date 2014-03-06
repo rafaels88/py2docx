@@ -34,11 +34,8 @@ class Unit(object):
                                                 "Points(pt)")
 
     @classmethod
-    def pixel_to_dxa(cls, pixels):
-        inches = pixels / 75
-        points = inches * 72
-        dxa = points * 20
-        return dxa
+    def pixel_to_emu(cls, pixel):
+        return int(round(pixel * 12700))
 
     @classmethod
     def cm_to_dxa(cls, centimeters):

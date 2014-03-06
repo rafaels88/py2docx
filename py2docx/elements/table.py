@@ -1,7 +1,7 @@
 # coding: utf-8
-from elements import Block
-from elements.image import Image
-from util import Unit
+from py2docx.elements import Block
+from py2docx.elements.image import Image
+from py2docx.util import Unit
 
 
 class CellAppendException(Exception):

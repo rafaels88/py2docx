@@ -1,20 +1,24 @@
 # coding: utf-8
 import os
-from document import DOCUMENT_PATH
+from os.path import basename
+from PIL import Image as PILImage
+from py2docx.document import DOCUMENT_PATH
+from py2docx.util import Unit
 
 
 class Image(object):
 
     def __init__(self, image_path):
         self.image = open(image_path, 'r')
+        self.image_name = basename(self.image.name).replace(" ", '-')
         self.xml = """
             <w:p>
               <w:r>
                 <w:drawing>
                     <wp:inline distT="0" distB="0" distL="0" distR="0">
-                        <wp:extent cx="5080000" cy="3810000" />
+                        <wp:extent cx="{width}" cy="{height}" />
                         <wp:effectExtent l="25400" t="0" r="0" b="0" />
-                        <wp:docPr id="1" name="Picture 0" descr="img.jpg" />
+                        <wp:docPr id="1" name="Picture 0" descr="{image_name}" />
                         <wp:cNvGraphicFramePr>
                             <a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1" />
                         </wp:cNvGraphicFramePr>
@@ -22,7 +26,7 @@ class Image(object):
                             <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
                                 <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
                                     <pic:nvPicPr>
-                                        <pic:cNvPr id="0" name="img.jpg" />
+                                        <pic:cNvPr id="0" name="{image_name}" />
                                         <pic:cNvPicPr />
                                     </pic:nvPicPr>
                                     <pic:blipFill>
@@ -34,7 +38,7 @@ class Image(object):
                                     <pic:spPr>
                                         <a:xfrm>
                                             <a:off x="0" y="0" />
-                                            <a:ext cx="5080000" cy="3810000" />
+                                            <a:ext cx="{width}" cy="{height}" />
                                         </a:xfrm>
                                         <a:prstGeom prst="rect">
                                             <a:avLst />
@@ -48,8 +52,8 @@ class Image(object):
               </w:r>
             </w:p>
         """
-        self._set_properties()
         self._upload_image()
+        self._set_properties()
 
     def _get_image(self):
         return self.image
@@ -61,18 +65,17 @@ class Image(object):
         dir_media = "{0}/word/media".format(DOCUMENT_PATH)
         if not os.path.exists(dir_media):
             os.makedirs(dir_media)
-        file_name = self.image.name
-        img_uploaded = open("{0}/{1}".format(dir_media, file_name), 'w')
+        img_uploaded = open("{0}/{1}".format(dir_media, self.image_name), 'w')
         img_uploaded.write(self.image.read())
         img_uploaded.close()
 
     def _set_properties(self):
-        name = self.image.name
-        width = '100000'
-        height = '1000000'
-        self.xml = self.xml.replace("{width}", width) \
-                           .replace("{height}", height) \
-                           .replace("{image_name}", name)
+        image_pil = PILImage.open(self.image.name)
+        width = Unit.pixel_to_emu(image_pil.size[0])
+        height = Unit.pixel_to_emu(image_pil.size[1])
+        self.xml = self.xml.replace("{width}", str(width)) \
+                           .replace("{height}", str(height)) \
+                           .replace("{image_name}", self.image_name)
 
     def _get_xml(self):
         return self.xml
