@@ -3,8 +3,9 @@
 
 class Block(object):
 
-    def __init__(self, align=None):
+    def __init__(self, initial=None, align=None):
         self.content = ""
+        self.initial = initial
         self.align = align
         self.href_list_elem = []
         self.xml_string = '<w:p>' + \
@@ -14,7 +15,16 @@ class Block(object):
                           '{content}' + \
                           '</w:p>'
         self.xml_props = []
+        self._set_initial()
         self._set_properties()
+
+    def _set_initial(self):
+        if self.initial:
+            if type(self.initial) is list:
+                for elem in self.initial:
+                    self.append(elem)
+            else:
+                self.append(self.initial)
 
     def _get_xml(self):
         return self.xml_string.format(content=self.content)

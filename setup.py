@@ -4,7 +4,7 @@
 from distutils.core import setup
 setup(
     name='py2docx',
-    version='0.1a1',
+    version='0.1b1',
     description='Write .docx documents using Python Code',
     long_description="",
     keywords=['docx', 'word', 'microsoft word'],

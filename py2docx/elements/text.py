@@ -1,4 +1,5 @@
 # coding: utf-8
+from py2docx.elements import Block
 
 
 class IsNotTextTypeException(Exception):
@@ -44,7 +45,10 @@ class InlineText(Text):
         self._set_properties()
 
     def _get_xml(self):
-        return self.xml_string.replace("{text}", self.text)
+        if type(self.text) not in [str, unicode]:
+            self.text = unicode(self.text)
+        return self.xml_string.replace("{text}",
+                                       self.text.encode('utf-8'))
 
     def _set_properties(self):
         self._set_bold()
@@ -90,3 +94,11 @@ class InlineText(Text):
             xml = '<w:color w:val="{color}" />'
             color = self.color.lstrip('#')
             self.xml_props.append(xml.format(color=color))
+
+
+class BlockText(InlineText):
+
+    def _get_xml(self):
+        block_text = Block()
+        block_text.append(InlineText(self.text))
+        return block_text._get_xml()

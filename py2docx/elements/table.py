@@ -1,6 +1,7 @@
 # coding: utf-8
 from py2docx.elements import Block
 from py2docx.elements.image import Image
+from py2docx.elements.text import BlockText
 from py2docx.util import Unit
 
 
@@ -44,15 +45,15 @@ class Table(object):
         self.xml_props = []
         self._set_properties()
 
-    def add_column(self, cells):
-        xml_column = '\n<w:tr>{cells}</w:tr>\n'
+    def add_row(self, cells):
+        xml_row = '\n<w:tr>{cells}</w:tr>\n'
         xml_cells = ''
         for cell in cells:
             if isinstance(cell, Cell):
                 xml_cells += cell._get_xml()
             else:
                 raise AddColumnException("Must be a list of Cell")
-        self.columns.append(xml_column.format(cells=xml_cells))
+        self.columns.append(xml_row.format(cells=xml_cells))
 
     def _set_properties(self):
         self._set_margin()
@@ -98,7 +99,7 @@ class Table(object):
                                              bottom=bottom,
                                              right=right,
                                              left=left))
-    
+
     def _set_width(self):
         if self.width:
             xml = '\n<w:tblW w:type="{unit_type}" w:w="{width}"/>\n'
@@ -162,9 +163,10 @@ class Table(object):
 
 class Cell(object):
 
-    def __init__(self, bgcolor=None, margin=None, width=None,
+    def __init__(self, initial=None, bgcolor=None, margin=None, width=None,
                  valign=None, nowrap=False, border=None):
         self.content = ''
+        self.initial = initial
         self.bgcolor = bgcolor
         self.margin = margin
         self.width = width
@@ -180,10 +182,20 @@ class Cell(object):
         self.xml_props = []
 
         self._set_properties()
+        self._set_initial()
+
+    def _set_initial(self):
+        if self.initial:
+            if type(self.initial) is list:
+                for elem in self.initial:
+                    self.append(elem)
+            else:
+                self.append(self.initial)
 
     def append(self, elem):
         if isinstance(elem, Block) \
            or isinstance(elem, Image) \
+           or isinstance(elem, BlockText) \
            or isinstance(elem, Table):
             self.content += elem._get_xml()
         else:
