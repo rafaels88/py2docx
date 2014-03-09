@@ -100,8 +100,8 @@ Block elements is almost the same like "\<div\>" HTML element.
 
 Parameter | Description
 --------- | -----------
-initial | One element or a list of elements to put inside the block
-align | Horizontal align. Options are: 'left', 'right', 'center' or 'justify'
+initial | One element or a list of elements to put inside the block.
+align | Horizontal align. Options are: 'left', 'right', 'center' or 'justify'.
 
 ```python
 text = InlineText("Hello World!")
@@ -118,7 +118,7 @@ block.append(text)
 
 Parameter  | Description
 ---------- | -----------
-elem | Any element to put inside the block
+elem | Any element to put inside the block.
 
 
 
@@ -134,7 +134,7 @@ The accepted types are: png, jpg, git, jpeg
 
 Parameters | Description
 ---------- | -----------
-path       | A string with the image's path
+path       | A string with the image's path.
 
 ```python
 Image("/Pictures/image.png")
