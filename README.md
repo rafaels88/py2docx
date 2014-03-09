@@ -215,10 +215,11 @@ c.append(text)
 Parameter  | Description
 ---------- | -----------
 elem       | A Cell, Block, BlockText or Image, to put inside the cell.
-```
+
 
 
 ### InlineText
+
 ```python
 from py2docx.elements.text import InlineText
 ```
