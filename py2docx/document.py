@@ -491,7 +491,54 @@ class StyleFile(DocxDocument):
                               '<w:style w:type="paragraph" w:default="1" w:styleId="Normal">' + \
                                 '<w:name w:val="Normal"/>' + \
                                 '<w:qFormat/>' + \
-                                '<w:rsid w:val="0083019A"/>' + \
+                                '<w:rsid w:val="001A4D62"/>' + \
+                              '</w:style>' + \
+                              '<w:style w:type="paragraph" w:styleId="Heading1">' + \
+                                '<w:name w:val="heading 1"/>' + \
+                                '<w:basedOn w:val="Normal"/>' + \
+                                '<w:next w:val="Normal"/>' + \
+                                '<w:link w:val="Heading1Char"/>' + \
+                                '<w:uiPriority w:val="9"/>' + \
+                                '<w:qFormat/>' + \
+                                '<w:rsid w:val="000222C4"/>' + \
+                                '<w:pPr>' + \
+                                  '<w:keepNext/>' + \
+                                  '<w:keepLines/>' + \
+                                  '<w:spacing w:before="480" w:after="0"/>' + \
+                                  '<w:outlineLvl w:val="0"/>' + \
+                                '</w:pPr>' + \
+                                '<w:rPr>' + \
+                                  '<w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi"/>' + \
+                                  '<w:b/>' + \
+                                  '<w:bCs/>' + \
+                                  '<w:color w:val="345A8A" w:themeColor="accent1" w:themeShade="B5"/>' + \
+                                  '<w:sz w:val="32"/>' + \
+                                  '<w:szCs w:val="32"/>' + \
+                                '</w:rPr>' + \
+                              '</w:style>' + \
+                              '<w:style w:type="paragraph" w:styleId="Heading2">' + \
+                                '<w:name w:val="heading 2"/>' + \
+                                '<w:basedOn w:val="Normal"/>' + \
+                                '<w:next w:val="Normal"/>' + \
+                                '<w:link w:val="Heading2Char"/>' + \
+                                '<w:uiPriority w:val="9"/>' + \
+                                '<w:unhideWhenUsed/>' + \
+                                '<w:qFormat/>' + \
+                                '<w:rsid w:val="000222C4"/>' + \
+                                '<w:pPr>' + \
+                                  '<w:keepNext/>' + \
+                                  '<w:keepLines/>' + \
+                                  '<w:spacing w:before="200" w:after="0"/>' + \
+                                  '<w:outlineLvl w:val="1"/>' + \
+                                '</w:pPr>' + \
+                                '<w:rPr>' + \
+                                  '<w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi"/>' + \
+                                  '<w:b/>' + \
+                                  '<w:bCs/>' + \
+                                  '<w:color w:val="4F81BD" w:themeColor="accent1"/>' + \
+                                  '<w:sz w:val="26"/>' + \
+                                  '<w:szCs w:val="26"/>' + \
+                                '</w:rPr>' + \
                               '</w:style>' + \
                               '<w:style w:type="character" w:default="1" w:styleId="DefaultParagraphFont">' + \
                                 '<w:name w:val="Default Paragraph Font"/>' + \
@@ -518,6 +565,36 @@ class StyleFile(DocxDocument):
                                 '<w:semiHidden/>' + \
                                 '<w:unhideWhenUsed/>' + \
                               '</w:style>' + \
+                              '<w:style w:type="character" w:customStyle="1" w:styleId="Heading1Char">' + \
+                                '<w:name w:val="Heading 1 Char"/>' + \
+                                '<w:basedOn w:val="DefaultParagraphFont"/>' + \
+                                '<w:link w:val="Heading1"/>' + \
+                                '<w:uiPriority w:val="9"/>' + \
+                                '<w:rsid w:val="000222C4"/>' + \
+                                '<w:rPr>' + \
+                                  '<w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi"/>' + \
+                                  '<w:b/>' + \
+                                  '<w:bCs/>' + \
+                                  '<w:color w:val="345A8A" w:themeColor="accent1" w:themeShade="B5"/>' + \
+                                  '<w:sz w:val="32"/>' + \
+                                  '<w:szCs w:val="32"/>' + \
+                                '</w:rPr>' + \
+                              '</w:style>' + \
+                              '<w:style w:type="character" w:customStyle="1" w:styleId="Heading2Char">' + \
+                                '<w:name w:val="Heading 2 Char"/>' + \
+                                '<w:basedOn w:val="DefaultParagraphFont"/>' + \
+                                '<w:link w:val="Heading2"/>' + \
+                                '<w:uiPriority w:val="9"/>' + \
+                                '<w:rsid w:val="000222C4"/>' + \
+                                '<w:rPr>' + \
+                                  '<w:rFonts w:asciiTheme="majorHAnsi" w:eastAsiaTheme="majorEastAsia" w:hAnsiTheme="majorHAnsi" w:cstheme="majorBidi"/>' + \
+                                  '<w:b/>' + \
+                                  '<w:bCs/>' + \
+                                  '<w:color w:val="4F81BD" w:themeColor="accent1"/>' + \
+                                  '<w:sz w:val="26"/>' + \
+                                  '<w:szCs w:val="26"/>' + \
+                                '</w:rPr>' + \
+                              '</w:style>' + \
                             '</w:styles>'
 
     def _get_xml(self):
@@ -525,7 +602,6 @@ class StyleFile(DocxDocument):
 
 
 class ThemeFile(DocxDocument):
-
     def __init__(self):
         self.dir_name = 'word/theme'
         self.file_name = 'theme1.xml'

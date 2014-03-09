@@ -164,7 +164,7 @@ class Table(object):
 class Cell(object):
 
     def __init__(self, initial=None, bgcolor=None, margin=None, width=None,
-                 valign=None, nowrap=False, border=None):
+                 valign=None, nowrap=False, border=None, colspan=1):
         self.content = ''
         self.initial = initial
         self.bgcolor = bgcolor
@@ -173,6 +173,7 @@ class Cell(object):
         self.valign = valign
         self.nowrap = nowrap
         self.border = border
+        self.colspan = colspan
         self.xml_string = '\n<w:tc>' + \
                           '<w:tcPr>' + \
                           '{properties}' + \
@@ -212,6 +213,7 @@ class Cell(object):
         self._set_valign()
         self._set_nowrap()
         self._set_border()
+        self._set_colspan()
         self.xml_string = self.xml_string.replace('{properties}',
                                                   ''.join(self.xml_props))
 
@@ -328,3 +330,8 @@ class Cell(object):
                     xml_sides.append(xml)
 
             self.xml_props.append(xml_border.format(sides="".join(xml_sides)))
+
+    def _set_colspan(self):
+        if type(self.colspan) is int:
+            xml = '<w:gridSpan w:val="{0}"/>'
+            self.xml_props.append(xml.format(self.colspan))
