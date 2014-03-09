@@ -302,8 +302,9 @@ BlockText("Hello World!", bold=True, italic=True,
 
 # For Devs
 
-This lib needs help. Now, I am writing the unit tests. I have made py2docx because there isn't good lib for build a docx with Python. 
-I really needed to be fast. If you want to enjoy this project, I will be very very glad.
+This module needs help. Now, I am writing the unit tests. 
+I have made py2docx because there is no good module for build a docx with Python. 
+I really needed to be fast. If you want to join me on this project, I will be very very glad.
 
 Download the project, install the requirements and give some ideas to improve this a lot =)
 
