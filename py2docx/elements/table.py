@@ -21,7 +21,7 @@ class AddColumnException(Exception):
         return repr(self.value)
 
 
-class InvalidCellMarginException(Exception):
+class InvalidCellPaddingException(Exception):
     def __init__(self, value):
         self.value = value
 
@@ -31,14 +31,14 @@ class InvalidCellMarginException(Exception):
 
 class Table(object):
 
-    def __init__(self, margin=None, width=None, border=None):
+    def __init__(self, padding=None, width=None, border=None):
         self.xml_string = '<w:tbl>' + \
                           '<w:tblPr>' + \
                           '{properties}' + \
                           '</w:tblPr>' + \
                           '{content}' + \
                           '</w:tbl>'
-        self.margin = margin
+        self.padding = padding
         self.width = width
         self.border = border
         self.columns = []
@@ -56,15 +56,15 @@ class Table(object):
         self.columns.append(xml_row.format(cells=xml_cells))
 
     def _set_properties(self):
-        self._set_margin()
+        self._set_padding()
         self._set_width()
         self._set_border()
         self.xml_string = self.xml_string.replace('{properties}',
                                                   ''.join(self.xml_props))
 
-    def _set_margin(self):
-        if self.margin:
-            sizes = self.margin.split(' ')
+    def _set_padding(self):
+        if type(self.padding) in [str, unicode]:
+            sizes = self.padding.split(' ')
             if len(sizes) == 1:
                 top = bottom = left = right = sizes[0]
             elif len(sizes) == 2:
@@ -80,8 +80,8 @@ class Table(object):
                 bottom = sizes[2]
                 left = sizes[3]
             else:
-                raise InvalidCellMarginException("Cell Margin should be " +
-                                                 "in the W3C CSS format")
+                raise InvalidCellPaddingException("Table Padding should be " +
+                                                  "in the W3C CSS format")
 
             top = Unit.to_dxa(top)
             bottom = Unit.to_dxa(bottom)
@@ -163,12 +163,12 @@ class Table(object):
 
 class Cell(object):
 
-    def __init__(self, initial=None, bgcolor=None, margin=None, width=None,
+    def __init__(self, initial=None, bgcolor=None, padding=None, width=None,
                  valign=None, nowrap=False, border=None, colspan=1):
         self.content = ''
         self.initial = initial
         self.bgcolor = bgcolor
-        self.margin = margin
+        self.padding = padding
         self.width = width
         self.valign = valign
         self.nowrap = nowrap
@@ -208,7 +208,7 @@ class Cell(object):
 
     def _set_properties(self):
         self._set_bgcolor()
-        self._set_margin()
+        self._set_padding()
         self._set_width()
         self._set_valign()
         self._set_nowrap()
@@ -243,9 +243,9 @@ class Cell(object):
 
             self.xml_props.append(xml)
 
-    def _set_margin(self):
-        if self.margin:
-            sizes = self.margin.split(' ')
+    def _set_padding(self):
+        if type(self.padding) in [str, unicode]:
+            sizes = self.padding.split(' ')
             if len(sizes) == 1:
                 top = bottom = left = right = sizes[0]
             elif len(sizes) == 2:
@@ -261,8 +261,8 @@ class Cell(object):
                 bottom = sizes[2]
                 left = sizes[3]
             else:
-                raise InvalidCellMarginException("Cell Margin should be " +
-                                                 "in the W3C CSS format")
+                raise InvalidCellPaddingException("Cell Padding should be " +
+                                                  "in the W3C CSS format")
 
             top = Unit.to_dxa(top)
             bottom = Unit.to_dxa(bottom)

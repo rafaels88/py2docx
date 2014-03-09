@@ -24,7 +24,7 @@ bl.append(t1)
 bl2 = Block(align='center')
 bl2.append(t1)
 
-t = Table(width="100%", margin='5pt', border={'left': {'style': 'dashed'}})
+t = Table(width="100%", padding='5pt', border={'left': {'style': 'dashed'}})
 c1 = Cell()
 c1.append(bl)
 c2 = Cell([bl])
@@ -71,7 +71,8 @@ elem      | An Image, Block or Table to put in the document.
 
 ```python
 doc = Docx()
-doc.save("./example.docx")
+bl = Block()
+doc.append(bl)
 ```
 
 ##### save(path)
@@ -130,7 +131,7 @@ from py2docx.elements.image import Image
 ###### Methods:
 ##### __init__(path)
 
-The accepted types are: png, jpg, git, jpeg
+The accepted types are: png, jpg, gif, jpeg.
 
 Parameters | Description
 ---------- | -----------
@@ -148,24 +149,22 @@ from py2docx.elements.table import Table
 ```
 
 ###### Methods:
-##### __init__(margin, width, border)
-
+##### __init__(padding, width, border)
 
 Parameters | Description
 ---------- | -----------
-margin     | Margin for all cells. Should be in one of these units: cm (centimeters), in (inches) or pt (points). The numbers should be in the W3C CSS Format.
+padding    | Padding for all cells. Should be in one of these units: cm (centimeters), in (inches) or pt (points). The numbers should be in the W3C CSS Format.
 width      | Width of the table. Should be in one of these units: % (percentage), cm (centimeters), in (inches) or pt (points).
 border     | A dict with the specifications. Should be in this format: {'[SIDE]': {'color': '#[HEX]', 'size': '[INT]pt', style: '[dotted,dashed,solid,double]'}. The maximum size of the border is 12pt, minimum is 0.5pt.
 
 ```python
-Table(width='100%', margin='2cm', border={'left': {'color': '#FF0000', 'size': '2pt', style: 'dotted',
-                                          'bottom': {'color': '#FF0000', 'size': '2pt', style: 'dashed',
-                                          'top': {'color': '#FFFFFF', 'size': '3pt', style: 'solid',
-                                          'right': {'color': '#000000', 'size': '3pt', style: 'double'})
+Table(width='100%', padding='2cm', border={'left': {'color': '#FF0000', 'size': '2pt', style: 'dotted',
+                                           'bottom': {'color': '#FF0000', 'size': '2pt', style: 'dashed',
+                                           'top': {'color': '#FFFFFF', 'size': '3pt', style: 'solid',
+                                           'right': {'color': '#000000', 'size': '3pt', style: 'double'})
 ```
 
 ##### add_row(cells)
-
 
 Parameters | Description
 ---------- | -----------
@@ -184,22 +183,22 @@ from py2docx.elements.table import Cell
 ```
 
 ###### Methods:
-##### __init__(initial, bgcolor, margin, width, valign, nowrap, border, colspan=1)
+##### __init__(initial, bgcolor, padding, width, valign, nowrap, border, colspan=1)
 
 
 Parameters | Description
 ---------- | -----------
 initial    | One element or a list of elements to put inside the cell.
 bgcolor    | Background color of the cell, in hexadecimal '#00FF66'.
-margin     | Margin for all cells. Should be in one of these units: cm (centimeters), in (inches) or pt (points). The numbers should be in the W3C CSS Format.
-width      | Width of the table. Should be in one of these units: % (percentage), cm (centimeters), in (inches) or pt (points).
+padding    | Padding for cell. Should be in one of these units: cm (centimeters), in (inches) or pt (points). The numbers should be in the W3C CSS Format.
+width      | Width of the cell. Should be in one of these units: % (percentage), cm (centimeters), in (inches) or pt (points).
 valign     | Vertical Align. Options are: 'top', 'center', 'bottom'.
 nowrap     | True or False. It does not work with width.
 border     | A dict with the specifications. Should be in this format: {'[SIDE]': {'color': '#[HEX]', 'size': '[INT]pt', style: '[dotted,dashed,solid,double]'}. The maximum size of the border is 12pt, minimum is 0.5pt.
 colspan    | An int with the number of cells.
 
 ```python
-Cell([Image("path/filename.ext"), BlockText("Hello World!")], bgcolor='#3377FF', margin='5cm 10cm',
+Cell([Image("path/filename.ext"), BlockText("Hello World!")], bgcolor='#3377FF', padding='5cm 10cm',
      width='5cm', valign='center', border={'bottom': {'color': '#FF0000', 'size': '2pt', style: 'dashed'}, colspan=2)
 ```
 
@@ -216,7 +215,6 @@ Parameter  | Description
 ---------- | -----------
 elem       | A Cell, Block, BlockText or Image, to put inside the cell.
 ```
-
 
 
 ### InlineText
@@ -303,10 +301,10 @@ BlockText("Hello World!", bold=True, italic=True,
 
 # For Devs
 
-This lib needs help. Now, I am writing the unit tests. I have made this because there isn't good lib for this. I really needed to be fast.
-If you want to enjoy this project, I will be very very glad.
+This lib needs help. Now, I am writing the unit tests. I have made py2docx because there isn't good lib for build a docx with Python. 
+I really needed to be fast. If you want to enjoy this project, I will be very very glad.
 
-Do a fork of this project, install the requirements and give some ideas to improve this a lot =)
+Download the project, install the requirements and give some ideas to improve this a lot =)
 
 ```
 make requirements
