@@ -303,8 +303,8 @@ BlockText("Hello World!", bold=True, italic=True,
 
 # For Devs
 
-The lib needs help. Now, I am writing the unit tests. I have made this because there is no good lib for this. I really needed to be fast.
-If you want to enjoy this project, I will be very bery glad.
+This lib needs help. Now, I am writing the unit tests. I have made this because there isn't good lib for this. I really needed to be fast.
+If you want to enjoy this project, I will be very very glad.
 
 Do a fork of this project, install the requirements and give some ideas to improve this a lot =)
 
