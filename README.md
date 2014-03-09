@@ -36,7 +36,7 @@ t.add_row([c1, c3])
 bl3 = Block([InlineText("Inline Text "),
              InlineText("Bold Here", bold=True)])
 
-i = Image("Pictures/into_the_wild.jpg")
+i = Image("Pictures/into_the_wild.jpg", align='center')
 
 doc.append(bl)
 doc.append(t)
@@ -129,16 +129,17 @@ from py2docx.elements.image import Image
 ```
 
 ###### Methods:
-##### __init__(path)
+##### __init__(path, align)
 
 The accepted types are: png, jpg, gif, jpeg.
 
 Parameters | Description
 ---------- | -----------
 path       | A string with the image's path.
+align      | Horizontal Align. Values should be: 'left', 'center' or 'right'
 
 ```python
-Image("/Pictures/image.png")
+Image("/Pictures/image.png", align='right')
 ```
 
 
