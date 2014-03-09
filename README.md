@@ -129,7 +129,7 @@ from py2docx.elements.image import Image
 ```
 
 ###### Methods:
-##### __init__(path, align)
+##### __init__(path, align=None)
 
 The accepted types are: png, jpg, gif, jpeg.
 
@@ -150,7 +150,7 @@ from py2docx.elements.table import Table
 ```
 
 ###### Methods:
-##### __init__(padding, width, border)
+##### __init__(padding=None, width=None, border=None)
 
 Parameters | Description
 ---------- | -----------
@@ -184,7 +184,7 @@ from py2docx.elements.table import Cell
 ```
 
 ###### Methods:
-##### __init__(initial, bgcolor, padding, width, valign, nowrap, border, colspan=1)
+##### __init__(initial=None, bgcolor=None, padding=None, width=None, valign=None, nowrap=None, border=None, colspan=1)
 
 
 Parameters | Description
@@ -226,7 +226,7 @@ from py2docx.elements.text import InlineText
 You should put this in a Block. This is like a "\<span\>" HTML element.
 
 ###### Methods:
-##### __init__(text, bold, italic, underline, uppercase, color, font, size)
+##### __init__(text, bold=None, italic=None, underline=None, uppercase=None, color=None, font=None, size=None)
 
 
 Parameters | Description
@@ -277,7 +277,7 @@ Block(InlineText("Hello World"))
 ```
 
 ###### Methods:
-##### __init__(text, bold, italic, underline, uppercase, color, font, size)
+##### __init__(text, bold=None, italic=None, underline=None, uppercase=None, color=None, font=None, size=None)
 
 
 Parameters | Description
