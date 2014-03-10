@@ -3,6 +3,12 @@ Py2Docx - 0.1v
 
 Py2Docx is a python module to write .docx documents (>= Microsoft Word 2007).
 
+# Instalation
+```
+$ pip install py2docx
+```
+
+
 # Example
 
 ```python
