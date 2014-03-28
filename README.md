@@ -1,5 +1,6 @@
-Py2Docx - 0.1.1v (Release Date: March 28, 2014)
+Py2Docx - 0.1.1v 
 =======
+#### Release Date: March 28, 2014
 
 Py2Docx is a python module to write .docx documents (>= Microsoft Word 2007).
 
