@@ -8,9 +8,10 @@ from py2docx.util import Unit
 
 class Image(object):
 
-    def __init__(self, image_path, align=None):
+    def __init__(self, image_path, document, align=None):
         self.image = open(image_path, 'r')
         self.image_name = basename(self.image.name).replace(" ", '-')
+        self.document = document
         self.align = align
         self.xml = '<w:p>' + \
                    '<w:pPr>' + \
@@ -95,4 +96,8 @@ class Image(object):
             self.xml_props.append(xml.format(align=self.align))
 
     def _get_xml(self):
+        rel_id = self.document \
+                     .document_relationship_file \
+                     ._add_image(self.image_name)
+        self._set_relashionship(rel_id)
         return self.xml

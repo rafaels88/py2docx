@@ -2,6 +2,7 @@
 import os
 import zipfile
 from py2docx.elements.image import Image
+from py2docx.elements.table import Table
 from py2docx.document import RelationshipFile, AppFile, CoreFile, \
     DocumentFile, ContentTypeFile, DOCUMENT_PATH, \
     DocumentRelationshipFile, DocxDocument, SettingsFile, \
@@ -57,13 +58,5 @@ class Docx(object):
         DocxDocument._clean_all()
 
     def append(self, elem):
-        if isinstance(elem, Image):
-            rel_id = self._add_image_relationship(elem)
-            elem._set_relashionship(rel_id)
-
         xml_elem = elem._get_xml()
         self.content += xml_elem
-
-    def _add_image_relationship(self, image):
-        rel_id = self.document_relationship_file._add_image(image.image_name)
-        return rel_id

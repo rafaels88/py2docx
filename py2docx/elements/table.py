@@ -42,6 +42,7 @@ class Table(object):
         self.width = width
         self.border = border
         self.columns = []
+        self.cells = []
         self.xml_props = []
         self._set_properties()
 
@@ -50,10 +51,17 @@ class Table(object):
         xml_cells = ''
         for cell in cells:
             if isinstance(cell, Cell):
+                self.cells.append(cell)
                 xml_cells += cell._get_xml()
             else:
                 raise AddColumnException("Must be a list of Cell")
         self.columns.append(xml_row.format(cells=xml_cells))
+
+    def _set_images_relationship(self, func_add_rel):
+        for cell in self.cells:
+            for i in xrange(len(cell.elems)):
+                if isinstance(cell.elems[i], Image):
+                    func_add_rel(cell.elems[i])
 
     def _set_properties(self):
         self._set_padding()
@@ -174,6 +182,7 @@ class Cell(object):
         self.nowrap = nowrap
         self.border = border
         self.colspan = colspan
+        self.elems = []
         self.xml_string = '\n<w:tc>' + \
                           '<w:tcPr>' + \
                           '{properties}' + \
@@ -198,6 +207,7 @@ class Cell(object):
            or isinstance(elem, Image) \
            or isinstance(elem, BlockText) \
            or isinstance(elem, Table):
+            self.elems.append(elem)
             self.content += elem._get_xml()
         else:
             raise CellAppendException("Element to append should be a " +
