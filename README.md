@@ -169,13 +169,13 @@ Parameters | Description
 ---------- | -----------
 padding    | Padding for all cells. Should be in one of these units: cm (centimeters), in (inches) or pt (points). The numbers should be in the W3C CSS Format.
 width      | Width of the table. Should be in one of these units: % (percentage), cm (centimeters), in (inches) or pt (points).
-border     | A dict with the specifications. Should be in this format: {'[SIDE]': {'color': '#[HEX]', 'size': '[INT]pt', style: '[dotted,dashed,solid,double]'}. The maximum size of the border is 12pt, minimum is 0.5pt.
+border     | A dict with the specifications. Should be in this format: {'[SIDE]': {'color': '#[HEX]', 'size': '[INT]pt', 'style': '[dotted,dashed,solid,double]'}. The maximum size of the border is 12pt, minimum is 0.5pt.
 
 ```python
-Table(width='100%', padding='2cm', border={'left': {'color': '#FF0000', 'size': '2pt', style: 'dotted',
-                                           'bottom': {'color': '#FF0000', 'size': '2pt', style: 'dashed',
-                                           'top': {'color': '#FFFFFF', 'size': '3pt', style: 'solid',
-                                           'right': {'color': '#000000', 'size': '3pt', style: 'double'})
+Table(width='100%', padding='2cm', border={'left': {'color': '#FF0000', 'size': '2pt', 'style': 'dotted'},
+                                           'bottom': {'color': '#FF0000', 'size': '2pt',' style': 'dashed'},
+                                           'top': {'color': '#FFFFFF', 'size': '3pt', 'style': 'solid'},
+                                           'right': {'color': '#000000', 'size': '3pt', 'style': 'double'}})
 ```
 
 ##### add_row(cells)
@@ -208,12 +208,12 @@ padding    | Padding for cell. Should be in one of these units: cm (centimeters)
 width      | Width of the cell. Should be in one of these units: % (percentage), cm (centimeters), in (inches) or pt (points).
 valign     | Vertical Align. Options are: 'top', 'center', 'bottom'.
 nowrap     | True or False. It does not work with width.
-border     | A dict with the specifications. Should be in this format: {'[SIDE]': {'color': '#[HEX]', 'size': '[INT]pt', style: '[dotted,dashed,solid,double]'}. The maximum size of the border is 12pt, minimum is 0.5pt.
+border     | A dict with the specifications. Should be in this format: {'[SIDE]': {'color': '#[HEX]', 'size': '[INT]pt', 'style': '[dotted,dashed,solid,double]'}. The maximum size of the border is 12pt, minimum is 0.5pt.
 colspan    | An int with the number of cells.
 
 ```python
 Cell([Image("path/filename.ext"), BlockText("Hello World!")], bgcolor='#3377FF', padding='5cm 10cm',
-     width='5cm', valign='center', border={'bottom': {'color': '#FF0000', 'size': '2pt', style: 'dashed'}, colspan=2)
+     width='5cm', valign='center', border={'bottom': {'color': '#FF0000', 'size': '2pt', 'style': 'dashed'}, colspan=2)
 ```
 
 
