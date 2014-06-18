@@ -1,0 +1,523 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Py2docx by rafaels88</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Py2docx</h1>
+        <p class="header">A python module to create DOCX documents</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/rafaels88/py2docx/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/rafaels88/py2docx/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/rafaels88/py2docx">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/rafaels88">rafaels88</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a name="py2docx---020v-" class="anchor" href="#py2docx---020v-"><span class="octicon octicon-link"></span></a>Py2Docx - 0.2.0v </h1>
+
+<h4>
+<a name="release-date-june-18-2014" class="anchor" href="#release-date-june-18-2014"><span class="octicon octicon-link"></span></a>Release Date: June 18, 2014</h4>
+
+<p>Py2Docx is a python module to write .docx documents (&gt;= Microsoft Word 2007).</p>
+
+<h1>
+<a name="last-modifications" class="anchor" href="#last-modifications"><span class="octicon octicon-link"></span></a>Last Modifications</h1>
+
+<ul>
+<li>Image have two optional arguments: width and height;</li>
+<li>FIX: Image read and write problems.</li>
+</ul><h1>
+<a name="instalation" class="anchor" href="#instalation"><span class="octicon octicon-link"></span></a>Instalation</h1>
+
+<pre><code>$ pip install py2docx
+</code></pre>
+
+<h1>
+<a name="example" class="anchor" href="#example"><span class="octicon octicon-link"></span></a>Example</h1>
+
+<div class="highlight highlight-python"><pre><span class="c"># coding: utf-8</span>
+<span class="kn">from</span> <span class="nn">py2docx.docx</span> <span class="kn">import</span> <span class="n">Docx</span>
+<span class="kn">from</span> <span class="nn">py2docx.elements</span> <span class="kn">import</span> <span class="n">Block</span>
+<span class="kn">from</span> <span class="nn">py2docx.elements.text</span> <span class="kn">import</span> <span class="n">InlineText</span><span class="p">,</span> <span class="n">Break</span><span class="p">,</span> <span class="n">BlockText</span>
+<span class="kn">from</span> <span class="nn">py2docx.elements.image</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">py2docx.elements.table</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Cell</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">Docx</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">InlineText</span><span class="p">(</span><span class="s">"An Inline Text"</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                <span class="n">underline</span><span class="o">=</span><span class="p">{</span><span class="s">'style'</span><span class="p">:</span> <span class="s">'solid'</span><span class="p">,</span> <span class="s">'color'</span><span class="p">:</span> <span class="s">'#4433ff'</span><span class="p">},</span>
+                <span class="n">color</span><span class="o">=</span><span class="s">"#FF0000"</span><span class="p">)</span>
+
+<span class="n">bl</span> <span class="o">=</span> <span class="n">Block</span><span class="p">()</span>
+<span class="n">bl</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+
+<span class="n">bl2</span> <span class="o">=</span> <span class="n">Block</span><span class="p">(</span><span class="n">align</span><span class="o">=</span><span class="s">'center'</span><span class="p">)</span>
+<span class="n">bl2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s">"100%"</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s">'5pt'</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="p">{</span><span class="s">'left'</span><span class="p">:</span> <span class="p">{</span><span class="s">'style'</span><span class="p">:</span> <span class="s">'dashed'</span><span class="p">}})</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="n">Cell</span><span class="p">()</span>
+<span class="n">c1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bl</span><span class="p">)</span>
+<span class="n">c2</span> <span class="o">=</span> <span class="n">Cell</span><span class="p">([</span><span class="n">bl</span><span class="p">])</span>
+<span class="n">c3</span> <span class="o">=</span> <span class="n">Cell</span><span class="p">(</span><span class="n">bl2</span><span class="p">,</span> <span class="n">valign</span><span class="o">=</span><span class="s">'top'</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="p">{</span><span class="s">'left'</span><span class="p">:</span> <span class="p">{</span><span class="s">'size'</span><span class="p">:</span> <span class="s">'1pt'</span><span class="p">,</span> <span class="s">'color'</span><span class="p">:</span> <span class="s">'#33ddff'</span><span class="p">}})</span>
+
+<span class="n">t</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">])</span>
+<span class="n">t</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="n">c1</span><span class="p">,</span> <span class="n">c3</span><span class="p">])</span>
+
+<span class="n">bl3</span> <span class="o">=</span> <span class="n">Block</span><span class="p">([</span><span class="n">InlineText</span><span class="p">(</span><span class="s">"Inline Text "</span><span class="p">),</span>
+             <span class="n">InlineText</span><span class="p">(</span><span class="s">"Bold Here"</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="bp">True</span><span class="p">)])</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="s">"Pictures/into_the_wild.jpg"</span><span class="p">,</span> <span class="n">document</span><span class="o">=</span><span class="n">doc</span><span class="p">,</span>
+          <span class="n">align</span><span class="o">=</span><span class="s">'center'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s">'50%'</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s">'50%'</span><span class="p">)</span>
+
+<span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bl</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Block</span><span class="p">(</span><span class="n">Break</span><span class="p">()))</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BlockText</span><span class="p">(</span><span class="s">"This is a Block Text"</span><span class="p">))</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Block</span><span class="p">(</span><span class="n">InlineText</span><span class="p">(</span><span class="s">"This is a Block Text"</span><span class="p">)))</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bl3</span><span class="p">)</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BlockText</span><span class="p">(</span><span class="s">u"Arial Test"</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s">'Arial'</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
+
+<span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">"./py2docx.docx"</span><span class="p">)</span>
+</pre></div>
+
+<h1>
+<a name="api" class="anchor" href="#api"><span class="octicon octicon-link"></span></a>API</h1>
+
+<h2>
+<a name="creating-a-document" class="anchor" href="#creating-a-document"><span class="octicon octicon-link"></span></a>Creating a Document</h2>
+
+<h3>
+<a name="docx" class="anchor" href="#docx"><span class="octicon octicon-link"></span></a>Docx</h3>
+
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">py2docx.docx</span> <span class="kn">import</span> <span class="n">Docx</span>
+</pre></div>
+
+<p>Create a document</p>
+
+<h6>
+<a name="methods" class="anchor" href="#methods"><span class="octicon octicon-link"></span></a>Methods:</h6>
+
+<h5>
+<a name="appendelem" class="anchor" href="#appendelem"><span class="octicon octicon-link"></span></a>append(elem)</h5>
+
+<table>
+<thead><tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>elem</td>
+<td>An Image, Block or Table to put in the document.</td>
+</tr></tbody>
+</table><div class="highlight highlight-python"><pre><span class="n">doc</span> <span class="o">=</span> <span class="n">Docx</span><span class="p">()</span>
+<span class="n">bl</span> <span class="o">=</span> <span class="n">Block</span><span class="p">()</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bl</span><span class="p">)</span>
+</pre></div>
+
+<h5>
+<a name="savepath" class="anchor" href="#savepath"><span class="octicon octicon-link"></span></a>save(path)</h5>
+
+<table>
+<thead><tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>path</td>
+<td>The path that the document are going to be saved.</td>
+</tr></tbody>
+</table><div class="highlight highlight-python"><pre><span class="n">doc</span> <span class="o">=</span> <span class="n">Docx</span><span class="p">()</span>
+<span class="n">doc</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s">"./example.docx"</span><span class="p">)</span>
+</pre></div>
+
+<h2>
+<a name="elements" class="anchor" href="#elements"><span class="octicon octicon-link"></span></a>Elements</h2>
+
+<h3>
+<a name="block" class="anchor" href="#block"><span class="octicon octicon-link"></span></a>Block</h3>
+
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">py2docx.docx.elements</span> <span class="kn">import</span> <span class="n">Block</span>
+</pre></div>
+
+<p>Block elements is almost the same like "&lt;div&gt;" HTML element.</p>
+
+<h6>
+<a name="methods-1" class="anchor" href="#methods-1"><span class="octicon octicon-link"></span></a>Methods:</h6>
+
+<h5>
+<a name="initinitialnone-alignnone" class="anchor" href="#initinitialnone-alignnone"><span class="octicon octicon-link"></span></a>
+<strong>init</strong>(initial=None, align=None)</h5>
+
+<table>
+<thead><tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>initial</td>
+<td>One element or a list of elements to put inside the block.</td>
+</tr>
+<tr>
+<td>align</td>
+<td>Horizontal align. Options are: 'left', 'right', 'center' or 'justify'.</td>
+</tr>
+</tbody>
+</table><div class="highlight highlight-python"><pre><span class="n">text</span> <span class="o">=</span> <span class="n">InlineText</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">)</span>
+<span class="n">block</span> <span class="o">=</span> <span class="n">Block</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s">'center'</span><span class="p">)</span>
+</pre></div>
+
+<h5>
+<a name="appendelem-1" class="anchor" href="#appendelem-1"><span class="octicon octicon-link"></span></a>append(elem)</h5>
+
+<div class="highlight highlight-python"><pre><span class="n">text</span> <span class="o">=</span> <span class="n">InlineText</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">)</span>
+<span class="n">block</span> <span class="o">=</span> <span class="n">Block</span><span class="p">()</span>
+<span class="n">block</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+
+<table>
+<thead><tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>elem</td>
+<td>Any element to put inside the block.</td>
+</tr></tbody>
+</table><h3>
+<a name="image" class="anchor" href="#image"><span class="octicon octicon-link"></span></a>Image</h3>
+
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">py2docx.elements.image</span> <span class="kn">import</span> <span class="n">Image</span>
+</pre></div>
+
+<h6>
+<a name="methods-2" class="anchor" href="#methods-2"><span class="octicon octicon-link"></span></a>Methods:</h6>
+
+<h5>
+<a name="initpath-document-alignnone-width100-height100" class="anchor" href="#initpath-document-alignnone-width100-height100"><span class="octicon octicon-link"></span></a>
+<strong>init</strong>(path, document, align=None, width='100%', height='100%')</h5>
+
+<p>The accepted types are: png, jpg, gif, jpeg.</p>
+
+<table>
+<thead><tr>
+<th>Parameters</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>path</td>
+<td>A string with the image's path.</td>
+</tr>
+<tr>
+<td>document</td>
+<td>The instance of the document (Docx())</td>
+</tr>
+<tr>
+<td>align</td>
+<td>Horizontal Align. Values should be: 'left', 'center' or 'right'</td>
+</tr>
+<tr>
+<td>width</td>
+<td>Width in percentage (string format: '90%').</td>
+</tr>
+<tr>
+<td>height</td>
+<td>Heigth in percentage (string format: '50%').</td>
+</tr>
+</tbody>
+</table><div class="highlight highlight-python"><pre><span class="n">doc</span> <span class="o">=</span> <span class="n">Docx</span><span class="p">()</span>
+<span class="n">Image</span><span class="p">(</span><span class="s">"/Pictures/image.png"</span><span class="p">,</span> <span class="n">document</span><span class="o">=</span><span class="n">doc</span><span class="p">,</span>
+      <span class="n">align</span><span class="o">=</span><span class="s">'right'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s">'80%'</span><span class="p">,</span> <span class="n">heigth</span><span class="o">=</span><span class="s">'40%'</span><span class="p">)</span>
+</pre></div>
+
+<h3>
+<a name="table" class="anchor" href="#table"><span class="octicon octicon-link"></span></a>Table</h3>
+
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">py2docx.elements.table</span> <span class="kn">import</span> <span class="n">Table</span>
+</pre></div>
+
+<h6>
+<a name="methods-3" class="anchor" href="#methods-3"><span class="octicon octicon-link"></span></a>Methods:</h6>
+
+<h5>
+<a name="initpaddingnone-widthnone-bordernone" class="anchor" href="#initpaddingnone-widthnone-bordernone"><span class="octicon octicon-link"></span></a>
+<strong>init</strong>(padding=None, width=None, border=None)</h5>
+
+<table>
+<thead><tr>
+<th>Parameters</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>padding</td>
+<td>Padding for all cells. Should be in one of these units: cm (centimeters), in (inches) or pt (points). The numbers should be in the W3C CSS Format.</td>
+</tr>
+<tr>
+<td>width</td>
+<td>Width of the table. Should be in one of these units: % (percentage), cm (centimeters), in (inches) or pt (points).</td>
+</tr>
+<tr>
+<td>border</td>
+<td>A dict with the specifications. Should be in this format: {'[SIDE]': {'color': '#[HEX]', 'size': '[INT]pt', 'style': '[dotted,dashed,solid,double]'}. The maximum size of the border is 12pt, minimum is 0.5pt.</td>
+</tr>
+</tbody>
+</table><div class="highlight highlight-python"><pre><span class="n">Table</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s">'100%'</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s">'2cm'</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="p">{</span><span class="s">'left'</span><span class="p">:</span> <span class="p">{</span><span class="s">'color'</span><span class="p">:</span> <span class="s">'#FF0000'</span><span class="p">,</span> <span class="s">'size'</span><span class="p">:</span> <span class="s">'2pt'</span><span class="p">,</span> <span class="s">'style'</span><span class="p">:</span> <span class="s">'dotted'</span><span class="p">},</span>
+                                           <span class="s">'bottom'</span><span class="p">:</span> <span class="p">{</span><span class="s">'color'</span><span class="p">:</span> <span class="s">'#FF0000'</span><span class="p">,</span> <span class="s">'size'</span><span class="p">:</span> <span class="s">'2pt'</span><span class="p">,</span><span class="s">' style'</span><span class="p">:</span> <span class="s">'dashed'</span><span class="p">},</span>
+                                           <span class="s">'top'</span><span class="p">:</span> <span class="p">{</span><span class="s">'color'</span><span class="p">:</span> <span class="s">'#FFFFFF'</span><span class="p">,</span> <span class="s">'size'</span><span class="p">:</span> <span class="s">'3pt'</span><span class="p">,</span> <span class="s">'style'</span><span class="p">:</span> <span class="s">'solid'</span><span class="p">},</span>
+                                           <span class="s">'right'</span><span class="p">:</span> <span class="p">{</span><span class="s">'color'</span><span class="p">:</span> <span class="s">'#000000'</span><span class="p">,</span> <span class="s">'size'</span><span class="p">:</span> <span class="s">'3pt'</span><span class="p">,</span> <span class="s">'style'</span><span class="p">:</span> <span class="s">'double'</span><span class="p">}})</span>
+</pre></div>
+
+<h5>
+<a name="add_rowcells" class="anchor" href="#add_rowcells"><span class="octicon octicon-link"></span></a>add_row(cells)</h5>
+
+<table>
+<thead><tr>
+<th>Parameters</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>cells</td>
+<td>A list of Cells to put on a row.</td>
+</tr></tbody>
+</table><div class="highlight highlight-python"><pre><span class="n">t</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s">'100%'</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">add_row</span><span class="p">([</span><span class="n">Cell</span><span class="p">(),</span> <span class="n">Cell</span><span class="p">()])</span>
+</pre></div>
+
+<h3>
+<a name="cell" class="anchor" href="#cell"><span class="octicon octicon-link"></span></a>Cell</h3>
+
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">py2docx.elements.table</span> <span class="kn">import</span> <span class="n">Cell</span>
+</pre></div>
+
+<h6>
+<a name="methods-4" class="anchor" href="#methods-4"><span class="octicon octicon-link"></span></a>Methods:</h6>
+
+<h5>
+<a name="initinitialnone-bgcolornone-paddingnone-widthnone-valignnone-nowrapnone-bordernone-colspan1" class="anchor" href="#initinitialnone-bgcolornone-paddingnone-widthnone-valignnone-nowrapnone-bordernone-colspan1"><span class="octicon octicon-link"></span></a>
+<strong>init</strong>(initial=None, bgcolor=None, padding=None, width=None, valign=None, nowrap=None, border=None, colspan=1)</h5>
+
+<table>
+<thead><tr>
+<th>Parameters</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>initial</td>
+<td>One element or a list of elements to put inside the cell.</td>
+</tr>
+<tr>
+<td>bgcolor</td>
+<td>Background color of the cell, in hexadecimal '#00FF66'.</td>
+</tr>
+<tr>
+<td>padding</td>
+<td>Padding for cell. Should be in one of these units: cm (centimeters), in (inches) or pt (points). The numbers should be in the W3C CSS Format.</td>
+</tr>
+<tr>
+<td>width</td>
+<td>Width of the cell. Should be in one of these units: % (percentage), cm (centimeters), in (inches) or pt (points).</td>
+</tr>
+<tr>
+<td>valign</td>
+<td>Vertical Align. Options are: 'top', 'center', 'bottom'.</td>
+</tr>
+<tr>
+<td>nowrap</td>
+<td>True or False. It does not work with width.</td>
+</tr>
+<tr>
+<td>border</td>
+<td>A dict with the specifications. Should be in this format: {'[SIDE]': {'color': '#[HEX]', 'size': '[INT]pt', 'style': '[dotted,dashed,solid,double]'}. The maximum size of the border is 12pt, minimum is 0.5pt.</td>
+</tr>
+<tr>
+<td>colspan</td>
+<td>An int with the number of cells.</td>
+</tr>
+</tbody>
+</table><div class="highlight highlight-python"><pre><span class="n">Cell</span><span class="p">([</span><span class="n">Image</span><span class="p">(</span><span class="s">"path/filename.ext"</span><span class="p">),</span> <span class="n">BlockText</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">)],</span> <span class="n">bgcolor</span><span class="o">=</span><span class="s">'#3377FF'</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s">'5cm 10cm'</span><span class="p">,</span>
+     <span class="n">width</span><span class="o">=</span><span class="s">'5cm'</span><span class="p">,</span> <span class="n">valign</span><span class="o">=</span><span class="s">'center'</span><span class="p">,</span> <span class="n">border</span><span class="o">=</span><span class="p">{</span><span class="s">'bottom'</span><span class="p">:</span> <span class="p">{</span><span class="s">'color'</span><span class="p">:</span> <span class="s">'#FF0000'</span><span class="p">,</span> <span class="s">'size'</span><span class="p">:</span> <span class="s">'2pt'</span><span class="p">,</span> <span class="s">'style'</span><span class="p">:</span> <span class="s">'dashed'</span><span class="p">},</span> <span class="n">colspan</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+<h5>
+<a name="appendelem-2" class="anchor" href="#appendelem-2"><span class="octicon octicon-link"></span></a>append(elem)</h5>
+
+<div class="highlight highlight-python"><pre><span class="n">text</span> <span class="o">=</span> <span class="n">InlineText</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">Cell</span><span class="p">()</span>
+<span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+
+<table>
+<thead><tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr>
+<td>elem</td>
+<td>A Cell, Block, BlockText or Image, to put inside the cell.</td>
+</tr></tbody>
+</table><h3>
+<a name="inlinetext" class="anchor" href="#inlinetext"><span class="octicon octicon-link"></span></a>InlineText</h3>
+
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">py2docx.elements.text</span> <span class="kn">import</span> <span class="n">InlineText</span>
+</pre></div>
+
+<p>You should put this in a Block. This is like a "&lt;span&gt;" HTML element.</p>
+
+<h6>
+<a name="methods-5" class="anchor" href="#methods-5"><span class="octicon octicon-link"></span></a>Methods:</h6>
+
+<h5>
+<a name="inittext-boldnone-italicnone-underlinenone-uppercasenone-colornone-fontnone-sizenone" class="anchor" href="#inittext-boldnone-italicnone-underlinenone-uppercasenone-colornone-fontnone-sizenone"><span class="octicon octicon-link"></span></a>
+<strong>init</strong>(text, bold=None, italic=None, underline=None, uppercase=None, color=None, font=None, size=None)</h5>
+
+<table>
+<thead><tr>
+<th>Parameters</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>A string with words.</td>
+</tr>
+<tr>
+<td>bold</td>
+<td>True or False.</td>
+</tr>
+<tr>
+<td>italic</td>
+<td>True or False.</td>
+</tr>
+<tr>
+<td>underline</td>
+<td>A dict with properties: {'style': '[dotted/dashed/solid/double]', 'color': '#[HEX]'}.</td>
+</tr>
+<tr>
+<td>uppercase</td>
+<td>True or False.</td>
+</tr>
+<tr>
+<td>color</td>
+<td>Hexadecimal color.</td>
+</tr>
+<tr>
+<td>font</td>
+<td>Should be 'Cambria', 'Times New Roman', 'Arial' or 'Calibri'.</td>
+</tr>
+<tr>
+<td>size</td>
+<td>An INT of font's size in point.</td>
+</tr>
+</tbody>
+</table><div class="highlight highlight-python"><pre><span class="n">InlineText</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                <span class="n">underline</span><span class="o">=</span><span class="p">{</span><span class="s">'style'</span><span class="p">:</span> <span class="s">'solid'</span><span class="p">,</span> <span class="s">'color'</span><span class="p">:</span> <span class="s">'#4433ff'</span><span class="p">},</span>
+                <span class="n">uppercase</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"#FF0000"</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s">"Times New Roman"</span><span class="p">,</span>
+                <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+</pre></div>
+
+<h3>
+<a name="break" class="anchor" href="#break"><span class="octicon octicon-link"></span></a>Break</h3>
+
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">py2docx.elements.text</span> <span class="kn">import</span> <span class="n">Break</span>
+</pre></div>
+
+<p>The same as "&lt;br\ &gt;" HTML element.</p>
+
+<div class="highlight highlight-python"><pre><span class="n">hello</span> <span class="o">=</span> <span class="n">InlineText</span><span class="p">(</span><span class="s">"Hello"</span><span class="p">)</span>
+<span class="n">world</span> <span class="o">=</span> <span class="n">InlineText</span><span class="p">(</span><span class="s">"World"</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">Block</span><span class="p">([</span><span class="n">hello</span><span class="p">,</span> <span class="n">Break</span><span class="p">(),</span> <span class="n">world</span><span class="p">])</span>
+</pre></div>
+
+<h3>
+<a name="blocktext" class="anchor" href="#blocktext"><span class="octicon octicon-link"></span></a>BlockText</h3>
+
+<div class="highlight highlight-python"><pre><span class="kn">from</span> <span class="nn">py2docx.elements.text</span> <span class="kn">import</span> <span class="n">BlockText</span>
+</pre></div>
+
+<p>The same thing as:</p>
+
+<div class="highlight highlight-python"><pre><span class="n">Block</span><span class="p">(</span><span class="n">InlineText</span><span class="p">(</span><span class="s">"Hello World"</span><span class="p">))</span>
+</pre></div>
+
+<h6>
+<a name="methods-6" class="anchor" href="#methods-6"><span class="octicon octicon-link"></span></a>Methods:</h6>
+
+<h5>
+<a name="inittext-boldnone-italicnone-underlinenone-uppercasenone-colornone-fontnone-sizenone-1" class="anchor" href="#inittext-boldnone-italicnone-underlinenone-uppercasenone-colornone-fontnone-sizenone-1"><span class="octicon octicon-link"></span></a>
+<strong>init</strong>(text, bold=None, italic=None, underline=None, uppercase=None, color=None, font=None, size=None)</h5>
+
+<table>
+<thead><tr>
+<th>Parameters</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>text</td>
+<td>A string with words.</td>
+</tr>
+<tr>
+<td>bold</td>
+<td>True or False.</td>
+</tr>
+<tr>
+<td>italic</td>
+<td>True or False.</td>
+</tr>
+<tr>
+<td>underline</td>
+<td>A dict with properties: {'style': '[dotted/dashed/solid/double]', 'color': '#[HEX]'}.</td>
+</tr>
+<tr>
+<td>uppercase</td>
+<td>True or False.</td>
+</tr>
+<tr>
+<td>color</td>
+<td>Hexadecimal color.</td>
+</tr>
+<tr>
+<td>font</td>
+<td>Should be 'Cambria', 'Times New Roman', 'Arial' or 'Calibri'.</td>
+</tr>
+<tr>
+<td>size</td>
+<td>An INT of font's size in point.</td>
+</tr>
+</tbody>
+</table><div class="highlight highlight-python"><pre><span class="n">BlockText</span><span class="p">(</span><span class="s">"Hello World!"</span><span class="p">,</span> <span class="n">bold</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">italic</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+          <span class="n">underline</span><span class="o">=</span><span class="p">{</span><span class="s">'style'</span><span class="p">:</span> <span class="s">'solid'</span><span class="p">,</span> <span class="s">'color'</span><span class="p">:</span> <span class="s">'#4433ff'</span><span class="p">},</span>
+          <span class="n">uppercase</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">"#FF0000"</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s">"Times New Roman"</span><span class="p">,</span>
+          <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+</pre></div>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
