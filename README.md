@@ -1,12 +1,12 @@
-Py2Docx - 0.1.1v 
+Py2Docx - 0.2.0v 
 =======
-#### Release Date: March 28, 2014
+#### Release Date: June 18, 2014
 
 Py2Docx is a python module to write .docx documents (>= Microsoft Word 2007).
 
 # Last Modifications
-- Image element needs a new argument (document) on its constructor
-- Fix on Image insertion on Cell element
+- Image have two optional arguments: width and height;
+- FIX: Image read and write problems.
 
 # Instalation
 ```
@@ -47,7 +47,8 @@ t.add_row([c1, c3])
 bl3 = Block([InlineText("Inline Text "),
              InlineText("Bold Here", bold=True)])
 
-i = Image("Pictures/into_the_wild.jpg", document=doc, align='center')
+i = Image("Pictures/into_the_wild.jpg", document=doc,
+          align='center', width='50%', height='50%')
 
 doc.append(bl)
 doc.append(t)
@@ -140,7 +141,7 @@ from py2docx.elements.image import Image
 ```
 
 ###### Methods:
-##### __init__(path, document, align=None)
+##### __init__(path, document, align=None, width='100%', height='100%')
 
 The accepted types are: png, jpg, gif, jpeg.
 
@@ -149,10 +150,13 @@ Parameters | Description
 path       | A string with the image's path.
 document   | The instance of the document (Docx())
 align      | Horizontal Align. Values should be: 'left', 'center' or 'right'
+width      | Width in percentage (string format: '90%').
+height     | Heigth in percentage (string format: '50%').
 
 ```python
 doc = Docx()
-Image("/Pictures/image.png", document=doc, align='right')
+Image("/Pictures/image.png", document=doc,
+      align='right', width='80%', heigth='40%')
 ```
 
 

@@ -8,11 +8,14 @@ from py2docx.util import Unit
 
 class Image(object):
 
-    def __init__(self, image_path, document, align=None):
-        self.image = open(image_path, 'r')
+    def __init__(self, image_path, document, align=None,
+                 width='100%', height='100%'):
+        self.image = open(image_path, 'rb')
         self.image_name = basename(self.image.name).replace(" ", '-')
         self.document = document
         self.align = align
+        self.width = width
+        self.height = height
         self.xml = '<w:p>' + \
                    '<w:pPr>' + \
                    '{properties}' + \
@@ -70,7 +73,7 @@ class Image(object):
         dir_media = "{0}/word/media".format(DOCUMENT_PATH)
         if not os.path.exists(dir_media):
             os.makedirs(dir_media)
-        img_uploaded = open("{0}/{1}".format(dir_media, self.image_name), 'w')
+        img_uploaded = open("{0}/{1}".format(dir_media, self.image_name), 'wb')
         img_uploaded.write(self.image.read())
         img_uploaded.close()
 
@@ -81,8 +84,15 @@ class Image(object):
         image_pil = PILImage.open(self.image.name)
         width = Unit.pixel_to_emu(image_pil.size[0])
         height = Unit.pixel_to_emu(image_pil.size[1])
-        self.xml = self.xml.replace("{width}", str(width)) \
-                           .replace("{height}", str(height)) \
+
+        width_percentage_num = float(self.width[:-1])
+        height_percentage_num = float(self.height[:-1])
+
+        width = (width_percentage_num / 100) * width
+        height = (height_percentage_num / 100) * height
+
+        self.xml = self.xml.replace("{width}", str(int(width))) \
+                           .replace("{height}", str(int(height))) \
                            .replace("{image_name}", self.image_name)
 
     def _set_align(self):
