@@ -14,5 +14,6 @@ setup(
     license='MIT',
     packages=['py2docx', 'py2docx.elements', 'py2docx.tmp'],
     include_package_data=True,
-    install_requires=['PIL>=1.0']
+    #install_requires=['PIL>=1.0']
+    install_requires=['Pillow>=2.7.0']
 )
