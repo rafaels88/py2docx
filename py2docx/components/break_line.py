@@ -1,12 +1,10 @@
 # coding: utf-8
 from py2docx.components.component import Component
+from py2docx.templates.break_line_template import BreakLineTemplate
 
 
-class ContainerComponent(Component):
+class BreakLine(Component):
 
     def __init__(self, *args, **kw):
         Component.__init__(self, *args, **kw)
-
-    def append(self, component):
-        self.template.append(component.draw())
-        return self
+        self.template = BreakLineTemplate()

@@ -1,15 +1,9 @@
 # coding: utf8
+from py2docx.exceptions \
+    .invalid_unit_to_dxa_exception import InvalidUnitToDXAException
 
 
-class InvalidUnitToDXAException(Exception):
-    def __init__(self, value):
-        self.value = value
-
-    def __str__(self):
-        return repr(self.value)
-
-
-class Unit(object):
+class UnitConversor(object):
 
     @classmethod
     def to_dxa(cls, val):

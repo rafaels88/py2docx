@@ -14,9 +14,13 @@ class TextTemplate(ComponentTemplate):
         self.color_property = ''
         self.font_property = ''
         self.size_property = ''
+        self.is_block = False
 
     def begin(self):
-        return '<w:r>'
+        if self.is_block is True:
+            return '<w:p><w:r>'
+        else:
+            return '<w:r>'
 
     def properties(self):
         self._build_properties_list()
@@ -32,7 +36,10 @@ class TextTemplate(ComponentTemplate):
         return result
 
     def end(self):
-        return '</w:r>'
+        if self.is_block is True:
+            return '</w:r></w:p>'
+        else:
+            return '</w:r>'
 
     def bold(self):
         self.bold_property = '<w:b w:val="true"/>'
@@ -57,6 +64,9 @@ class TextTemplate(ComponentTemplate):
 
     def size(self, size):
         self.size_property = '<w:sz w:val="{0}"/>'.format(size)
+
+    def block(self):
+        self.is_block = True
 
     def _build_properties_list(self):
         properties = [

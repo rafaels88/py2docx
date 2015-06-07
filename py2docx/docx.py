@@ -1,16 +1,18 @@
 # coding: utf-8
 
-from py2docx.components.docx_component import DocxComponent
+from py2docx.components.document import Document
+from py2docx.services.docx_file_creator import DocxFileCreator
 
 
 class Docx(object):
 
     def __init__(self):
-        self.docx_component = DocxComponent()
+        self.document = Document()
 
     def append(self, component):
-        self.docx_component.add_component(component)
+        self.document.add_component(component)
         return self
 
-    def save(self):
-        return self.docx_component.draw()
+    def save(self, path):
+        docx_file_creator = DocxFileCreator(document=self.document)
+        docx_file_creator.create(path)

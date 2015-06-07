@@ -1,13 +1,14 @@
 # coding: utf-8
 
-from py2docx.components import Paragraph, BreakLine, Text
+from py2docx.components import Paragraph, BreakLine, Text, Image
 from py2docx.docx import Docx
 
 doc = Docx()
 
-par = Paragraph()
 br = BreakLine()
-txt = Text('Hello World!').bold().underline().italic().font('Arial')
+image = Image('/Users/rafael/Pictures/Fogao.jpg').align('center').width('20%').height('20%')
+txt = Text('Hello World!').bold().underline().italic().font('Arial').block()
 
-doc.append(par).append(br).append(txt)
-print doc.save()
+doc.append(txt)
+doc.append(image)
+print doc.save('./refactoring.docx')
