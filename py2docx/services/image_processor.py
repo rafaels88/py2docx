@@ -1,7 +1,7 @@
 # coding: utf-8
 import os
 from os.path import basename
-from PIL import Image as PILImage
+from PIL import Image as ImageHandler
 from py2docx.config import DOCUMENT_PATH
 from py2docx.helpers.unit_conversor import UnitConversor
 
@@ -11,7 +11,7 @@ class ImageProcessor(object):
     def __init__(self, image_path):
         self.file = open(image_path, 'rb')
         self._upload_image()
-        self.image = PILImage.open(self.file.name)
+        self.image = ImageHandler.open(self.file.name)
 
     def height_by_percentage(self, percentage):
         pixels = self._height_in_pixels()

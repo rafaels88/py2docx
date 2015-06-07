@@ -2,13 +2,13 @@
 from py2docx.templates.component_template import ComponentTemplate
 
 
-class BreakLineTemplate(ComponentTemplate):
+class PageBreakTemplate(ComponentTemplate):
 
     def __init__(self, *args, **kw):
-        super(BreakLineTemplate, self).__init__(*args, **kw)
+        super(PageBreakTemplate, self).__init__(*args, **kw)
 
     def begin(self):
-        return '<w:br/>'
+        return '<w:br w:type="page"/>'
 
     def properties(self):
         return ''

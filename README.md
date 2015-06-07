@@ -1,12 +1,15 @@
-Py2Docx - 0.2.0v 
+Py2Docx - 1.0.0
 =======
 #### Release Date: June 18, 2014
 
 Py2Docx is a python module to write .docx documents (>= Microsoft Word 2007).
 
-# Last Modifications
-- Image have two optional arguments: width and height;
-- FIX: Image read and write problems.
+# What is new in 1.0.0 version?
+- Break class no longer exists anymore, it has been substituted for LineBreak;
+- New component classes: LineBreak, PageBreak;
+- PIL library has been changed to Pillow;
+- All instance attributes may be setted using chaining methods;
+- The entire module has been refactored.
 
 # Instalation
 ```
